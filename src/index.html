@@ -8,16 +8,19 @@
 </head>
 <body>
   <header>
+    <div id="switch-container">
+      <button class="switch to-metric active">°C, kph</button>
+      <button class="switch to-imperial">°F, mph</button>
+    </div>
     <form id="search-form">
       <input type="text" placeholder="Search location">
       <button id="search-button" type="submit">Search</button>
     </form>
     <img src="#">
   </header>
-
   <div id="content">
     <div class="location" id="country"></div>
-    <div class="location" id="name"></div>
+    <div class="location" id="city"></div>
     <div class="location" id="localtime"></div>
     <div class="current" id="current-condition">
       Sky:
@@ -56,7 +59,6 @@
       <div id="uv"></div>
     </div>
   </div>
-
   <footer>
     <a href="https://github.com/Andrij-Kolomijec">
       <img class="icon" src="./github.svg">

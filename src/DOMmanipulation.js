@@ -1,11 +1,31 @@
-const img = document.querySelector("img");
 const searchButton = document.querySelector("#search-button");
-const degrees = "c";
-const speed = "kph";
-const gauge = "mm";
-const distance = "km";
+const toMetricButton = document.querySelector(".to-metric");
+const toImperialButton = document.querySelector(".to-imperial");
+let degrees = "c";
+let speed = "kph";
+let gauge = "mm";
+let distance = "km";
+
+function switchUnits() {
+  if (degrees === "c") {
+    degrees = "f";
+    speed = "mph";
+    gauge = "in";
+    distance = "miles";
+    toMetricButton.classList.remove("active");
+    toImperialButton.classList.add("active");
+  } else {
+    degrees = "c";
+    speed = "kph";
+    gauge = "mm";
+    distance = "km";
+    toImperialButton.classList.remove("active");
+    toMetricButton.classList.add("active");
+  }
+}
 
 async function fetchGif(input = "sky") {
+  const img = document.querySelector("img");
   try {
     const response = await fetch(
       `https://api.giphy.com/v1/gifs/translate?api_key=7wKVqKRF01bWdUJTDZtEo3GE0E3tpNaN&s=${input}_weather`,
@@ -25,7 +45,7 @@ async function fetchGif(input = "sky") {
 export default async function fetchWeatherData(input = "Barcelona") {
   const country = document.querySelector("#country");
   const localtime = document.querySelector("#localtime");
-  const name = document.querySelector("#name");
+  const city = document.querySelector("#city");
   const condition = document.querySelector("#condition");
   const temp = document.querySelector("#temp");
   const feelslike = document.querySelector("#feelslike");
@@ -45,18 +65,22 @@ export default async function fetchWeatherData(input = "Barcelona") {
       console.log("Server weather error!", data);
     } else {
       country.innerText = data.location.country;
-      name.innerText = data.location.name;
+      city.innerText = data.location.name;
       localtime.innerText = data.location.localtime.slice(11);
       condition.innerText = data.current.condition.text;
-      temp.innerText = `${data.current[`temp_${degrees}`]}°C`;
-      feelslike.innerText = `${data.current[`feelslike_${degrees}`]}°C`;
-      wind.innerText = `${data.current[`wind_${speed}`]}${speed} from ${
+      temp.innerText = `${
+        data.current[`temp_${degrees}`]
+      } °${degrees.toUpperCase()}`;
+      feelslike.innerText = `${
+        data.current[`feelslike_${degrees}`]
+      } °${degrees.toUpperCase()}`;
+      wind.innerText = `${data.current[`wind_${speed}`]} ${speed} from ${
         data.current.wind_dir
       }`;
-      pressure.innerText = `${data.current.pressure_mb}hPa`;
-      humidity.innerText = `${data.current.humidity}%`;
-      precip.innerText = `${data.current[`precip_${gauge}`]}${gauge}`;
-      vis.innerText = `${data.current[`vis_${distance}`] + distance}`;
+      pressure.innerText = `${data.current.pressure_mb} hPa`;
+      humidity.innerText = `${data.current.humidity} %`;
+      precip.innerText = `${data.current[`precip_${gauge}`]} ${gauge}`;
+      vis.innerText = `${data.current[`vis_${distance}`]} ${distance}`;
       uv.innerText = `${data.current.uv}`;
     }
     fetchGif(data.current.condition.text);
@@ -69,5 +93,12 @@ searchButton.addEventListener("click", (e) => {
   e.preventDefault();
   const input = document.querySelector("input").value;
   fetchWeatherData(input);
-  document.querySelector("input").value = "";
+  document.querySelector("input").value = null;
 });
+
+[toMetricButton, toImperialButton].forEach((button) =>
+  button.addEventListener("click", () => {
+    switchUnits();
+    fetchWeatherData(document.querySelector("#city").innerText);
+  }),
+);
