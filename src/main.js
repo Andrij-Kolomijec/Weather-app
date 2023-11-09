@@ -1,13 +1,8 @@
 import "./style.css";
-import fetchGif from "./DOMmanipulation";
-// const name = "James";
+// eslint-disable-next-line no-unused-vars
+import GitHub from "./github.svg";
+// eslint-disable-next-line no-unused-vars
+import background from "./background.jpg";
+import fetchWeatherData from "./DOMmanipulation";
 
-// const person = { first: name };
-
-// console.log(person);
-
-// const sayHelloLinting = (fName) => {
-//   console.log(`Hello linting, ${fName}`);
-// };
-
-fetchGif();
+fetchWeatherData();

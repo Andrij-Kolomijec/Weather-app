@@ -3,14 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="main.js" defer></script>
   <title>Weather</title>
 </head>
 <body>
-  <form action="">
-    <input type="text" placeholder="Search gif">
-    <button type="submit">Refresh</button>
-  </form>
-  <img src="#">
-  <script src="main.js"></script>
+  <header>
+    <form id="search-form">
+      <input type="text" placeholder="Search location">
+      <button id="search-button" type="submit">Search</button>
+    </form>
+    <img src="#">
+  </header>
+
+  <div id="content">
+    <div class="location" id="country"></div>
+    <div class="location" id="name"></div>
+    <div class="location" id="localtime"></div>
+    <div class="current" id="current-condition">
+      Sky:
+      <div id="condition"></div>
+    </div>
+    <div class="current" id="current-temp">
+      Temperature:
+      <div id="temp"></div>
+    </div>
+    <div class="current" id="current-feelslike">
+      Feels like:
+      <div id="feelslike"></div>
+    </div>
+    <div class="current" id="current-wind">
+      Wind:
+      <div id="wind"></div>
+    </div>
+    <div class="current" id="current-pressure">
+      Pressure:
+      <div id="pressure"></div>
+    </div>
+    <div class="current" id="current-humidity">
+      Humidity:
+      <div id="humidity"></div>
+    </div>
+    <div class="current" id="current-precip">
+      Precipitation:
+      <div id="precip"></div>
+    </div>
+    <div class="current" id="current-vis">
+      Visibility:
+      <div id="vis"></div>
+    </div>
+    <div class="current" id="current-uv">
+      UV index:
+      <div id="uv"></div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://github.com/Andrij-Kolomijec">
+      <img class="icon" src="./github.svg">
+    </a>
+    <p>
+      | Gifs by
+      <a href="https://giphy.com/">Giphy</a>
+    </p>
+    <p>
+      | Weather from
+      <a href="https://www.weatherapi.com/">WeatherAPI</a>
+    </p>
+    <p>
+      | Image from
+      <a href="https://www.freepik.com/">Freepik</a>
+      by tohamia
+    </p>
+  </footer>
 </body>
 </html>
