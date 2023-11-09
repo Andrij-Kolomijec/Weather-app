@@ -1,10 +1,18 @@
+import GitHub from "./github.svg";
+import weather from "./weather.svg";
+
 const searchButton = document.querySelector("#search-button");
 const toMetricButton = document.querySelector(".to-metric");
 const toImperialButton = document.querySelector(".to-imperial");
+const githubIcon = document.querySelector(".icon");
+const weatherIcon = document.querySelector("link[rel='icon']");
 let degrees = "c";
 let speed = "kph";
 let gauge = "mm";
 let distance = "km";
+
+githubIcon.src = GitHub;
+weatherIcon.href = weather;
 
 function switchUnits() {
   if (degrees === "c") {
